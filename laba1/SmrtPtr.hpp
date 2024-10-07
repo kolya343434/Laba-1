@@ -7,63 +7,85 @@
 
 // Шаблон умного указателя
 
+#include <iostream>
+
 template <typename T>
 class SmrtPtr {
 private:
     T* ptr;
+    unsigned* count; // Указатель на счётчик ссылок
 
 public:
     // Конструктор для одиночного объекта
     explicit SmrtPtr(T* p = nullptr)
-        : ptr(p) {}
+        : ptr(p), count(new unsigned(1)) {}
 
     // Конструктор копирования
     SmrtPtr(const SmrtPtr& other)
-        : ptr(other.ptr ? new T(*other.ptr) : nullptr) {}
+        : ptr(other.ptr), count(other.count) {
+        ++(*count); // Увеличиваем счётчик ссылок
+    }
 
     // Оператор копирующего присваивания
     SmrtPtr& operator=(const SmrtPtr& other) {
         if (this != &other) {
-            // Освобождаем старый объект, если есть
-            delete ptr;
+            // Уменьшаем счётчик ссылок на старый объект
+            if (--(*count) == 0) {
+                delete ptr;
+                delete count;
+            }
 
-            // Копируем объект, если указатель не null
-            ptr = other.ptr ? new T(*other.ptr) : nullptr;
+            // Копируем указатель и счётчик ссылок
+            ptr = other.ptr;
+            count = other.count;
+            ++(*count); // Увеличиваем счётчик ссылок
         }
         return *this;
     }
 
     // Оператор перемещения
     SmrtPtr(SmrtPtr&& other) noexcept
-        : ptr(other.ptr) {
-        other.ptr = nullptr; // Забираем владение указателем
+        : ptr(other.ptr), count(other.count) {
+        other.ptr = nullptr;
+        other.count = nullptr;
     }
 
     // Оператор перемещения для присваивания
     SmrtPtr& operator=(SmrtPtr&& other) noexcept {
         if (this != &other) {
-            delete ptr; // Освобождаем старый объект
+            // Уменьшаем счётчик ссылок на старый объект
+            if (--(*count) == 0) {
+                delete ptr;
+                delete count;
+            }
 
-            ptr = other.ptr; // Забираем владение указателем
-            other.ptr = nullptr; // Обнуляем указатель другого объекта
+            // Перемещаем указатель и счётчик ссылок
+            ptr = other.ptr;
+            count = other.count;
+            other.ptr = nullptr;
+            other.count = nullptr;
         }
         return *this;
     }
 
     // Деструктор
     ~SmrtPtr() {
-        delete ptr; // Освобождаем объект
+        // Уменьшаем счётчик ссылок и освобождаем память, если она больше не используется
+        if (ptr && --(*count) == 0) {
+            delete ptr;
+            delete count;
+        }
     }
 
     // Операторы разыменования и доступа
-     T& operator*() const { return *ptr; }
-     T* operator->() const { return ptr; }
-     T* get() const { return ptr; }
+    T& operator*() const { return *ptr; }
+    T* operator->() const { return ptr; }
+    T* get() const { return ptr; }
 
-   // T* get()  { return ptr; }
-   // T* operator->() { return ptr; }
-   // T& operator*()  { return *ptr; }
+    // Возвращает текущий счётчик ссылок
+    unsigned use_count() const { return *count; }
 };
+
 
 
 
