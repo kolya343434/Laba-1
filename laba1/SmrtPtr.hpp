@@ -1,11 +1,11 @@
 #pragma once
-#include <utility> // Для std::move
+#include <utility> 
 #include <iostream>
 
 #ifndef SMRT_PTR_HPP
 #define SMRT_PTR_HPP
 
-// Шаблон умного указателя
+
 
 #include <iostream>
 
@@ -23,7 +23,7 @@ public:
     // Конструктор копирования
     SmrtPtr(const SmrtPtr& other)
         : ptr(other.ptr), count(other.count) {
-        ++(*count); // Увеличиваем счётчик ссылок
+        ++(*count); 
     }
 
     // Оператор копирующего присваивания
@@ -38,7 +38,7 @@ public:
             // Копируем указатель и счётчик ссылок
             ptr = other.ptr;
             count = other.count;
-            ++(*count); // Увеличиваем счётчик ссылок
+            ++(*count); 
         }
         return *this;
     }
@@ -89,4 +89,4 @@ public:
 
 
 
-#endif  // SMRT_PTR_HPP
+#endif  

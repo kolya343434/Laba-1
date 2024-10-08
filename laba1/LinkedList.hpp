@@ -42,10 +42,25 @@ namespace SmartPointer {
         }
 
         // Удаление первого элемента
+       // Удаление первого элемента
         void pop_front() {
             if (head.get() != nullptr) {
-                head = head->next; // Смещение указателя head на следующий элемент
+                SmrtPtr<Node<T>> temp = head; // Создаем временный указатель на текущий head
+                head = head->next;            // Смещаем head на следующий элемент
+                // Временный указатель temp выходит из области видимости и удаляет предыдущий head, так как больше нет ссылок на него
             }
+        }
+
+
+        bool find(T value) const {
+            SmrtPtr<Node<T>> current = head;
+            while (current.get() != nullptr) {
+                if (current->data == value) {
+                    return true;
+                }
+                current = current->next;
+            }
+            return false;
         }
 
     };

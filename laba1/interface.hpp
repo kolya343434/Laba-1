@@ -30,7 +30,8 @@ void interface() {
             cout << "1)push_front\n";
             cout << "2)pop_front\n";
             cout << "3)print\n";
-            cout << "4)exit to main menu\n";
+            cout << "4)find\n";
+            cout << "5)exit to main menu\n";
             cin >> switcher_in_linkedlist_with_SmrtPtr;
 
             switch (switcher_in_linkedlist_with_SmrtPtr) {
@@ -42,15 +43,37 @@ void interface() {
                 break;
             }
             case 2:
+
                 list_linkedlist_with_SmrtPtrst.pop_front();
                 break;
+
             case 3:
+
                 list_linkedlist_with_SmrtPtrst.print();
                 break;
+
             case 4:
+
+                cout << "write number:" << endl;
+                int n;
+                cin >> n;
+
+                if(list_linkedlist_with_SmrtPtrst.find(n)){
+                    std::cout << "Value found in the list:" <<  n << std::endl;
+                                                          }
+                else {
+                    std::cout << "Value  not found in the list:"<<  n  << std::endl;
+                     }
+
+                break;
+
+            case 5:
+
                 cout << "Returning to the main menu" << endl;
                 break;
+
             default:
+
                 cout << "incorrect choose" << endl;
                 break;
             }
@@ -102,8 +125,6 @@ void interface() {
             switch(switcher_compar){
             case 1:
                 time_test();
-               // cout << "erert" << endl;
-               // time_test();
                 
             case 2:
                 break;
