@@ -1,17 +1,16 @@
 
 #pragma once
 #include <iostream>
-#include <memory> // Для std::unique_ptr
+#include <memory> 
 
 namespace stdSmartPointer {
 
-    // Структура узла
+    
     template <typename T>
     struct Node {
-        T data; // Данные узла
-        std::unique_ptr<Node> next; // Умный указатель на следующий узел
+        T data; 
+        std::unique_ptr<Node> next; 
 
-        // Конструктор
         Node(T value) : data(value), next(nullptr) {}
     };
 
@@ -19,10 +18,10 @@ namespace stdSmartPointer {
     template <typename T>
     class SinglyLinkedList {
     private:
-        std::unique_ptr<Node<T>> head; // Умный указатель на первый узел (голову списка)
+        std::unique_ptr<Node<T>> head; 
 
     public:
-        // Конструктор
+        
         SinglyLinkedList() : head(nullptr) {}
 
         // Метод для вставки элемента в начало списка
@@ -62,9 +61,9 @@ namespace stdSmartPointer {
             Node<T>* current = head.get(); // Используем сырые указатели через get()
 
             while (current) {
-                totalMemory += sizeof(Node<T>);       // Память для узла
-                totalMemory += sizeof(current->data); // Память для данных внутри узла
-                current = current->next.get();        // Переходим к следующему узлу
+                totalMemory += sizeof(Node<T>);       
+                totalMemory += sizeof(current->data); 
+                current = current->next.get();       
             }
 
             return totalMemory;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SmrtPtr.hpp" // Подключаем SmrtPtr
+#include "SmrtPtr.hpp"
 #include <iostream>
 #include <utility>
 
@@ -41,13 +41,11 @@ namespace SmartPointer {
             std::cout << "nullptr" << std::endl;
         }
 
-        // Удаление первого элемента
-       // Удаление первого элемента
         void pop_front() {
             if (head.get() != nullptr) {
-                SmrtPtr<Node<T>> temp = head; // Создаем временный указатель на текущий head
-                head = head->next;            // Смещаем head на следующий элемент
-                // Временный указатель temp выходит из области видимости и удаляет предыдущий head, так как больше нет ссылок на него
+                SmrtPtr<Node<T>> temp = head; 
+                head = head->next;           
+                
             }
         }
 

@@ -1,6 +1,5 @@
-#pragma once
-
-#include "Tests.hpp"
+#include "Tests.h"
+#include "interface.h"
 
 using namespace std;
 
@@ -22,7 +21,7 @@ void interface() {
             break;  // Выход из цикла
         }
 
-        
+
 
         switch (n) {
         case 1: {
@@ -58,12 +57,12 @@ void interface() {
                 int n;
                 cin >> n;
 
-                if(list_linkedlist_with_SmrtPtrst.find(n)){
-                    std::cout << "Value found in the list:" <<  n << std::endl;
-                                                          }
+                if (list_linkedlist_with_SmrtPtrst.find(n)) {
+                    std::cout << "Value found in the list:" << n << std::endl;
+                }
                 else {
-                    std::cout << "Value  not found in the list:"<<  n  << std::endl;
-                     }
+                    std::cout << "Value  not found in the list:" << n << std::endl;
+                }
 
                 break;
 
@@ -120,17 +119,17 @@ void interface() {
             cout << "1)start testing" << endl;
             cout << "2)Returning to the main menu" << endl;
 
-            cin >> switcher_compar ;
+            cin >> switcher_compar;
 
-            switch(switcher_compar){
+            switch (switcher_compar) {
             case 1:
                 time_test();
-                
+
             case 2:
                 break;
             case 3:
-                default:
-                    cout << "Incorrect selection in the main menu" << endl;
+            default:
+                cout << "Incorrect selection in the main menu" << endl;
             }
         }
         default:
@@ -139,4 +138,4 @@ void interface() {
     }
 }
 
-	
+
