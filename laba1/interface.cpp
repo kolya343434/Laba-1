@@ -1,12 +1,17 @@
 #include "Tests.h"
 #include "interface.h"
+#include <string>
 
 using namespace std;
 
 void interface() {
+
     int n;  // Переменная для выбора в меню
-    SmartPointer::LinkedList<int> list_linkedlist_with_SmrtPtrst;
-    stdSmartPointer::SinglyLinkedList<int> list_linkedlist_with_std_SmrtPtrst;
+    
+
+    SmartPointer::LinkedList<string> list_linkedlist_with_SmrtPtr;
+    stdSmartPointer::SinglyLinkedList<string> list_linkedlist_with_std_SmrtPtr;
+
     // Бесконечный цикл (можно также использовать do-while)
     while (true) {
         cout << "1)linkedlist_with_SmrtPtr" << endl;
@@ -35,37 +40,39 @@ void interface() {
 
             switch (switcher_in_linkedlist_with_SmrtPtr) {
             case 1: {
-                int chislo_in_linkedlist_with_SmrtPtr;
-                cout << "write number: ";
+                string chislo_in_linkedlist_with_SmrtPtr;
+                cout << "write: ";
                 cin >> chislo_in_linkedlist_with_SmrtPtr;
-                list_linkedlist_with_SmrtPtrst.push_front(chislo_in_linkedlist_with_SmrtPtr);
+                list_linkedlist_with_SmrtPtr.push_front(chislo_in_linkedlist_with_SmrtPtr);
                 break;
+
             }
             case 2:
 
-                list_linkedlist_with_SmrtPtrst.pop_front();
+                list_linkedlist_with_SmrtPtr.pop_front();
                 break;
 
             case 3:
 
-                list_linkedlist_with_SmrtPtrst.print();
+                list_linkedlist_with_SmrtPtr.print();
                 break;
 
-            case 4:
+            case 4: {
 
-                cout << "write number:" << endl;
-                int n;
-                cin >> n;
+                cout << "write" << endl;
+                string p;
 
-                if (list_linkedlist_with_SmrtPtrst.find(n)) {
-                    std::cout << "Value found in the list:" << n << std::endl;
+                cin >> p;
+
+                if (list_linkedlist_with_SmrtPtr.find(p)) {
+                    std::cout << "Value found in the list:" << p << std::endl;
                 }
                 else {
-                    std::cout << "Value  not found in the list:" << n << std::endl;
+                    std::cout << "Value  not found in the list:" << p << std::endl;
                 }
 
                 break;
-
+            }
             case 5:
 
                 cout << "Returning to the main menu" << endl;
@@ -90,19 +97,19 @@ void interface() {
 
             switch (switcher_in_linkedlist_with_std_SmrtPtr) {
             case 1: {
-                cout << "write number: ";
+                cout << "write: ";
 
-                int chislo_in_linkedlist_with_SmrtPtr;
+                string chislo_in_linkedlist_with_SmrtPtr;
                 cin >> chislo_in_linkedlist_with_SmrtPtr;
 
-                list_linkedlist_with_std_SmrtPtrst.push_front(chislo_in_linkedlist_with_SmrtPtr);
+                list_linkedlist_with_std_SmrtPtr.push_front(chislo_in_linkedlist_with_SmrtPtr);
                 break;
             }
             case 2:
-                list_linkedlist_with_std_SmrtPtrst.pop_front();
+                list_linkedlist_with_std_SmrtPtr.pop_front();
                 break;
             case 3:
-                list_linkedlist_with_std_SmrtPtrst.print_list();
+                list_linkedlist_with_std_SmrtPtr.print_list();
                 break;
             case 4:
                 cout << "Returning to the main menu" << endl;
@@ -114,23 +121,11 @@ void interface() {
             break;
         }
         case 3: {
-            int switcher_compar;
-
-            cout << "1)start testing" << endl;
-            cout << "2)Returning to the main menu" << endl;
-
-            cin >> switcher_compar;
-
-            switch (switcher_compar) {
-            case 1:
+            
                 time_test();
 
-            case 2:
                 break;
-            case 3:
-            default:
-                cout << "Incorrect selection in the main menu" << endl;
-            }
+            
         }
         default:
             cout << "Incorrect selection in the main menu" << endl;
