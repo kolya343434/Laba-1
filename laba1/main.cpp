@@ -5,7 +5,7 @@
 
 int main() {
 
-    std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    std::setlocale(LC_ALL, "Russian");
     interface();
     
     
