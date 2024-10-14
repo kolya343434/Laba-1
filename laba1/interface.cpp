@@ -67,10 +67,10 @@ void interface() {
                 cin >> p;
 
                 if (list_linkedlist_with_SmrtPtr.find(p)) {
-                    std::cout << "Value found in the list:" << p << std::endl;
+                    cout << "Value found in the list:" << p << endl;
                 }
                 else {
-                    std::cout << "Value  not found in the list:" << p << std::endl;
+                    cout << "Value  not found in the list:" << p << endl;
                 }
 
                 break;
