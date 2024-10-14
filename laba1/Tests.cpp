@@ -5,7 +5,6 @@
 #include "Tests.h"
 #include <vector>
 
-using namespace std;
 
 void create_move_test() {
 
@@ -75,6 +74,7 @@ void all_tests() {
 }
 
 double loadTest(const int N) {
+
     // Используем std::vector для управления массивом умных указателей SmrtPtr<int>
     std::vector<SmrtPtr<int>> buff(N);
 
@@ -85,7 +85,7 @@ double loadTest(const int N) {
             buff[i] = SmrtPtr<int>(new int());  // Создаем новый объект
         }
         else {
-            buff[i] = buff[i % (5 * 5)];  // Копируем существующий умный указатель
+            buff[i] = buff[i % (5 * 5)];  
         }
     }
 
@@ -104,14 +104,14 @@ double loadTest_std(const int N) {
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = std::unique_ptr<int>(new int()); // Выделяем память под новый объект T
+            buff[i] = std::unique_ptr<int>(new int()); 
         }
         else {
             if (buff[i % (5 * 5)]) {
-                buff[i] = std::unique_ptr<int>(new int(*buff[i % (5 * 5)])); // Копируем объект
+                buff[i] = std::unique_ptr<int>(new int(*buff[i % (5 * 5)])); 
             }
             else {
-                buff[i] = std::unique_ptr<int>(new int()); // Если указатель не инициализирован, создаём новый объект
+                buff[i] = std::unique_ptr<int>(new int()); 
             }
         }
     }
