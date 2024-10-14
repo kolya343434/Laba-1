@@ -3,6 +3,7 @@
 #include <thread>
 #include <iomanip>
 #include "Tests.h"
+#include <vector>
 
 using namespace std;
 
@@ -74,25 +75,24 @@ void all_tests() {
 }
 
 template <typename T>
-auto loadTest(const int N) {
+double loadTest(const int N) {
+    // Используем std::vector для управления массивом умных указателей
+    std::vector<SmrtPtr<T>> buff(N);
 
-    SmrtPtr<T>* buff = new SmrtPtr<T>[N];
     auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = SmrtPtr<T>(new T()); 
+            buff[i] = SmrtPtr<T>(new T());  // Создаем новый объект
         }
         else {
-            buff[i] = buff[i % 5 * 5]; //копируем существующее
+            buff[i] = buff[i % (5 * 5)];  // Копируем существующий умный указатель
         }
     }
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 
-
-    delete[] buff;
     return duration.count();
 }
 
@@ -125,7 +125,7 @@ auto loadTest_std(const int N) {
 
 void  time_test() {
 
-
+    
     cout << setw(15) << " SmrtPtr "
         << setw(20) << " stdSmrtPtr " << endl;
 

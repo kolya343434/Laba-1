@@ -6,6 +6,8 @@ using namespace std;
 
 void interface() {
 
+    all_tests();
+
     int n;  // Переменная для выбора в меню
     
 

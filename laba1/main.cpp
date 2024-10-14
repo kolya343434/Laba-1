@@ -4,7 +4,7 @@
 #include <clocale> // Для setlocale
 
 int main() {
-
+    
     std::setlocale(LC_ALL, "Russian");
     interface();
     
