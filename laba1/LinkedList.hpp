@@ -41,15 +41,15 @@ namespace SmartPointer {
             std::cout << "nullptr" << std::endl;
         }
 
+        // Удаление первого элемента списка
         void pop_front() {
             if (head.get() != nullptr) {
-                SmrtPtr<Node<T>> temp = head; 
-                head = head->next;           
-                
+                SmrtPtr<Node<T>> temp = head;
+                head = head->next;
             }
         }
 
-
+        // Поиск элемента в списке
         bool find(T value) const {
             SmrtPtr<Node<T>> current = head;
             while (current.get() != nullptr) {
@@ -61,6 +61,7 @@ namespace SmartPointer {
             return false;
         }
 
+        
     };
 
 }

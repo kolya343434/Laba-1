@@ -20,3 +20,7 @@ auto loadTest(const int N);
 auto loadTest_std(const int N);
 
 void  time_test();
+
+void all_tests();
+
+void create_copy();

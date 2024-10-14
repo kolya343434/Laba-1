@@ -24,7 +24,6 @@ namespace stdSmartPointer {
         
         SinglyLinkedList() : head(nullptr) {}
 
-        // Метод для вставки элемента в начало списка
         void push_front(T value) {
             // Создаём новый узел и передаём владение старой головой как "next"
             std::unique_ptr<Node<T>> new_node = std::make_unique<Node<T>>(value);
@@ -40,7 +39,7 @@ namespace stdSmartPointer {
             }
         }
 
-        // Метод для вывода элементов списка
+       
         void print_list() const {
             Node<T>* current = head.get(); // Получаем сырой указатель для обхода списка
             while (current) {

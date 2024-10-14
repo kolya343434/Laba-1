@@ -56,7 +56,7 @@ void interface() {
 
                 list_linkedlist_with_SmrtPtr.print();
                 break;
-
+            
             case 4: {
 
                 cout << "write" << endl;

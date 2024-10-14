@@ -1,23 +1,13 @@
-﻿
-
-#ifndef SMRT_PTR_HPP
+﻿#ifndef SMRT_PTR_HPP
 #define SMRT_PTR_HPP
-
-
-
-
 
 template <typename T>
 class SmrtPtr {
 private:
     T* ptr;
     unsigned* count;
-
-   
         
 public:
-
-   
 
     explicit SmrtPtr(T* p = nullptr)
         : ptr(p), count(new unsigned(1)) {}

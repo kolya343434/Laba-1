@@ -81,7 +81,7 @@ auto loadTest(const int N) {
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = SmrtPtr<T>(new T()); // аллоцируем новый эллемент
+            buff[i] = SmrtPtr<T>(new T()); 
         }
         else {
             buff[i] = buff[i % 5 * 5]; //копируем существующее

@@ -1,6 +1,6 @@
 
 #include "interface.h"
-#include <locale>  // Для работы с локалями
+#include <locale>  
 #include <clocale> // Для setlocale
 
 int main() {
