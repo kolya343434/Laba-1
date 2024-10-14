@@ -74,16 +74,15 @@ void all_tests() {
     test_smart_pointer_reference();
 }
 
-template <typename T>
 double loadTest(const int N) {
-    // Используем std::vector для управления массивом умных указателей
-    std::vector<SmrtPtr<T>> buff(N);
+    // Используем std::vector для управления массивом умных указателей SmrtPtr<int>
+    std::vector<SmrtPtr<int>> buff(N);
 
     auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = SmrtPtr<T>(new T());  // Создаем новый объект
+            buff[i] = SmrtPtr<int>(new int());  // Создаем новый объект
         }
         else {
             buff[i] = buff[i % (5 * 5)];  // Копируем существующий умный указатель
@@ -96,23 +95,23 @@ double loadTest(const int N) {
     return duration.count();
 }
 
-template <typename T>
-auto loadTest_std(const int N) {
 
-    std::unique_ptr<std::unique_ptr<T>[]> buff(new std::unique_ptr<T>[N]);
+double loadTest_std(const int N) {
+
+    std::unique_ptr<std::unique_ptr<int>[]> buff(new std::unique_ptr<int>[N]);
 
     auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = std::unique_ptr<T>(new T()); // Выделяем память под новый объект T
+            buff[i] = std::unique_ptr<int>(new int()); // Выделяем память под новый объект T
         }
         else {
             if (buff[i % (5 * 5)]) {
-                buff[i] = std::unique_ptr<T>(new T(*buff[i % (5 * 5)])); // Копируем объект
+                buff[i] = std::unique_ptr<int>(new int(*buff[i % (5 * 5)])); // Копируем объект
             }
             else {
-                buff[i] = std::unique_ptr<T>(new T()); // Если указатель не инициализирован, создаём новый объект
+                buff[i] = std::unique_ptr<int>(new int()); // Если указатель не инициализирован, создаём новый объект
             }
         }
     }
@@ -130,19 +129,19 @@ void  time_test() {
         << setw(20) << " stdSmrtPtr " << endl;
 
 
-    cout << setw(5) << loadTest<int>(100) << "s "
-        << setw(20) << loadTest_std<int>(100) << "s " << endl;
+    cout << setw(5) << loadTest(100) << "s "
+        << setw(20) << loadTest_std(100) << "s " << endl;
 
-    cout << setw(5) << loadTest<int>(1000) << "s "
-        << setw(20) << loadTest_std<int>(1000) << "s " << endl;
+    cout << setw(5) << loadTest(1000) << "s "
+        << setw(20) << loadTest_std(1000) << "s " << endl;
 
-    cout << setw(5) << loadTest<int>(10000) << "s "
-        << setw(20) << loadTest_std<int>(10000) << "s " << endl;
+    cout << setw(5) << loadTest(10000) << "s "
+        << setw(20) << loadTest_std(10000) << "s " << endl;
 
-    cout << setw(5) << loadTest<int>(100000) << "s "
-        << setw(20) << loadTest_std<int>(100000) << "s " << endl;
+    cout << setw(5) << loadTest(100000) << "s "
+        << setw(20) << loadTest_std(100000) << "s " << endl;
 
-    cout << setw(5) << loadTest<int>(1000000) << "s "
-        << setw(20) << loadTest_std<int>(1000000) << "s " << endl;
+    cout << setw(5) << loadTest(1000000) << "s "
+        << setw(20) << loadTest_std(1000000) << "s " << endl;
 
 }

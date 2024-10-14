@@ -15,9 +15,9 @@ void test_smart_pointer_reference_impl(SmrtPtr<int>& ptr);
 
 void test_smart_pointer_reference();
 
-auto loadTest(const int N);
+double loadTest(const int N);
 
-auto loadTest_std(const int N);
+double loadTest_std(const int N);
 
 void  time_test();
 
