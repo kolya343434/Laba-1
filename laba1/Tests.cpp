@@ -75,7 +75,7 @@ void all_tests() {
 
 double loadTest(const int N) {
 
-    // Используем std::vector для управления массивом умных указателей SmrtPtr<int>
+    
     std::vector<SmrtPtr<int>> buff(N);
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -85,7 +85,7 @@ double loadTest(const int N) {
             buff[i] = SmrtPtr<int>(new int());  // Создаем новый объект
         }
         else {
-            buff[i] = buff[i % (5 * 5)];  
+            buff[i] = buff[i-(i%5)];  
         }
     }
 
@@ -98,21 +98,17 @@ double loadTest(const int N) {
 
 double loadTest_std(const int N) {
 
-    std::unique_ptr<std::unique_ptr<int>[]> buff(new std::unique_ptr<int>[N]);
+    std::vector<std::shared_ptr<int>> buff(N);
+    
 
     auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = std::unique_ptr<int>(new int()); 
+            buff[i] = std::make_shared<int>(); 
         }
         else {
-            if (buff[i % (5 * 5)]) {
-                buff[i] = std::unique_ptr<int>(new int(*buff[i % (5 * 5)])); 
-            }
-            else {
-                buff[i] = std::unique_ptr<int>(new int()); 
-            }
+            buff[i] = buff[i - (i % 5)];
         }
     }
 
