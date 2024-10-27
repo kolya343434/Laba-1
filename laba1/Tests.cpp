@@ -1,5 +1,4 @@
 
-#include <iostream>
 #include <thread>
 #include <iomanip>
 #include "Tests.h"
@@ -25,6 +24,7 @@ void create_change_value_test() {
    
 
 }
+
 void create_copy() {
 
     SmrtPtr<int> ptr1(new int(6));
@@ -73,19 +73,21 @@ void all_tests() {
     test_smart_pointer_reference();
 }
 
+
+
 double loadTest(const int N) {
 
-    
+
     std::vector<SmrtPtr<int>> buff(N);
 
     auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < N; ++i) {
         if (i % 5 == 0) {
-            buff[i] = SmrtPtr<int>(new int());  // Создаем новый объект
+            buff[i] = SmrtPtr<int>(new int()); 
         }
         else {
-            buff[i] = buff[i-(i%5)];  
+            buff[i] = buff[i - (i % 5)];
         }
     }
 
@@ -94,6 +96,7 @@ double loadTest(const int N) {
 
     return duration.count();
 }
+
 
 
 double loadTest_std(const int N) {
@@ -120,24 +123,27 @@ double loadTest_std(const int N) {
 
 void  time_test() {
 
-    
-    cout << setw(15) << " SmrtPtr "
+    cout << setw(46) << " SmrtPtr "
         << setw(20) << " stdSmrtPtr " << endl;
 
+    cout << "Testing with 100 elements:"
+        << setw(20) << loadTest(100) << "s "
+        << setw(15) << loadTest_std(100) << "s " << endl;
+    
+    cout << "Testing with 1000 elements:"
+        << setw(20) << loadTest(1000) << "s "
+        << setw(15) << loadTest_std(1000) << "s " << endl;
 
-    cout << setw(5) << loadTest(100) << "s "
-        << setw(20) << loadTest_std(100) << "s " << endl;
+    cout << "Testing with 10000 elements: "
+        << setw(18) << loadTest(10000) << "s "
+        << setw(15) << loadTest_std(10000) << "s " << endl;
 
-    cout << setw(5) << loadTest(1000) << "s "
-        << setw(20) << loadTest_std(1000) << "s " << endl;
+    cout << "Testing with 100000 elements: "
+        << setw(17) << loadTest(100000) << "s "
+        << setw(15) << loadTest_std(100000) << "s " << endl;
 
-    cout << setw(5) << loadTest(10000) << "s "
-        << setw(20) << loadTest_std(10000) << "s " << endl;
-
-    cout << setw(5) << loadTest(100000) << "s "
-        << setw(20) << loadTest_std(100000) << "s " << endl;
-
-    cout << setw(5) << loadTest(1000000) << "s "
-        << setw(20) << loadTest_std(1000000) << "s " << endl;
+    cout << "Testing with 1000000 elements:"
+        << setw(16) << loadTest(1000000) << "s "
+        << setw(15) << loadTest_std(1000000) << "s " << endl;
 
 }

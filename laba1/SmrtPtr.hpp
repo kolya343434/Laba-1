@@ -4,9 +4,21 @@
 template <typename T>
 class SmrtPtr {
 private:
+
     T* ptr;
     unsigned* count;
-        
+
+    void free() {
+        if (count) {
+            --(*count); 
+            if (*count == 0) { 
+                delete ptr;
+                delete count;
+            }
+        }
+
+    }
+
 public:
 
     explicit SmrtPtr(T* p = nullptr)
@@ -17,32 +29,38 @@ public:
         : ptr(other.ptr), count(other.count) {
         ++(*count);
     }
-  
     
     SmrtPtr& operator=(const SmrtPtr& other) {
         if (this != &other) {
        
-            if (--(*count) == 0) {
-                delete ptr;
-                delete count;
-            }
-           
-            
+            free();
+
             ptr = other.ptr;
             count = other.count;
             ++(*count);
         }
         return *this;
     }   
+
     ~SmrtPtr() {
 
-        if (count && --(*count) == 0) { 
-            delete ptr;
-            delete count;
-            ptr = nullptr;
-            count = nullptr;
+        free();
+    
+    }
 
-        }
+    // Оператор сравнения 
+    bool operator==(const SmrtPtr& other) const {
+        return ptr == other.ptr;
+    }
+
+    // Оператор сравнения 
+    bool operator!=(const SmrtPtr& other) const {
+        return ptr != other.ptr;
+    }
+
+    // Оператор приведения к bool
+    operator bool() const {
+        return ptr != nullptr;
     }
 
     

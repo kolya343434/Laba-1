@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD:laba1/ConsoleApplication1.vcxproj
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tests.cpp" />
@@ -143,6 +144,18 @@
     <ClInclude Include="SmrtPtr.hpp" />
     <ClInclude Include="std_LinkedList.hpp" />
     <ClInclude Include="Tests.h" />
+=======
+    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="Work_With_Files.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="ISorted.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Sequence.h" />
+    <ClInclude Include="Sort.h" />
+    <ClInclude Include="Work_With_Files.h" />
+>>>>>>> change interface and cmartptr:laba 2/ConsoleApplication1/ConsoleApplication1/ConsoleApplication1.vcxproj
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

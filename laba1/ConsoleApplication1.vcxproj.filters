@@ -18,14 +18,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD:laba1/ConsoleApplication1.vcxproj.filters
     <ClCompile Include="Tests.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="interface.cpp">
+=======
+    <ClCompile Include="Work_With_Files.cpp">
+>>>>>>> change interface and cmartptr:laba 2/ConsoleApplication1/ConsoleApplication1/ConsoleApplication1.vcxproj.filters
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD:laba1/ConsoleApplication1.vcxproj.filters
     <ClInclude Include="SmrtPtr.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -39,6 +44,24 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Tests.h">
+=======
+    <ClInclude Include="DynamicArray.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Sort.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ISorted.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Work_With_Files.h">
+>>>>>>> change interface and cmartptr:laba 2/ConsoleApplication1/ConsoleApplication1/ConsoleApplication1.vcxproj.filters
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
